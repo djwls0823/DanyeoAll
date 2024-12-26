@@ -13,4 +13,5 @@ public interface FeedMapper {
 
     int insFeed(FeedPostReq p);
     int updFeed(FeedPutReq p);
+    int delFeed(FeedDelReq p);
 }

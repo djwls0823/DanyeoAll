@@ -63,9 +63,20 @@
         UPDATE feed A
          INNER JOIN plan_master B
             ON A.plan_master_id = B.plan_master_id
-           SET A.title = #{title}
-             , A.content = #{content}
+        <set>
+            <if test=" title != null and title != '' ">
+                A.title = #{title}
+            </if>
+            <if test=" content != null and content != '' ">
+                , A.content = #{content}
+            </if>
+        </set>
          WHERE A.plan_master_id = #{planMasterId}
-           AND B.user_id = {userId}
+           AND B.user_id = #{userId}
     </update>
+
+    <delete id="delFeed">
+        DELETE FROM feed
+         WHERE plan_master_id = #{planMasterId}
+    </delete>
 </mapper>

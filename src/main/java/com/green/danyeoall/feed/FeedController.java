@@ -68,4 +68,14 @@ public class FeedController {
                              .resultData(result)
                              .build();
     }
+
+    @DeleteMapping
+    @Operation(summary = "Feed 삭제")
+    public ResultResponse<Integer> delFeed(@ParameterObject @ModelAttribute FeedDelReq p) {
+        int result = service.delFeed(p);
+        return ResultResponse.<Integer>builder()
+                             .resultMessage("피드 삭제 완료")
+                             .resultData(result)
+                             .build();
+    }
 }

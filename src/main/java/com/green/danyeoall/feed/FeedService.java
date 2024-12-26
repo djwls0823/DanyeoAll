@@ -38,4 +38,9 @@ public class FeedService {
         int result = mapper.updFeed(p);
         return result;
     }
+
+    public int delFeed(FeedDelReq p) {
+        int result = mapper.delFeed(p);
+        return result;
+    }
 }
