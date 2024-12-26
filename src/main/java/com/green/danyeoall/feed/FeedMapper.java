@@ -1,7 +1,6 @@
 package com.green.danyeoall.feed;
 
-import com.green.danyeoall.feed.model.FeedGetReq;
-import com.green.danyeoall.feed.model.FeedGetRes;
+import com.green.danyeoall.feed.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -10,4 +9,8 @@ import java.util.List;
 public interface FeedMapper {
     List<FeedGetRes> selFeedListMain(FeedGetReq p);
     List<FeedGetRes> selFeedList(FeedGetReq p);
+    FeedDetailGetRes selFeedDetail(FeedDetailGetReq p);
+
+    int insFeed(FeedPostReq p);
+    int updFeed(FeedPutReq p);
 }
