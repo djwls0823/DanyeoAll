@@ -3,6 +3,7 @@ package com.green.danyeoall.feed;
 import com.green.danyeoall.common.model.ResultResponse;
 import com.green.danyeoall.feed.model.*;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
@@ -13,13 +14,13 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@Slf4j
 @RequestMapping("feed")
+@Tag(name = "피드")
 public class FeedController {
     private final FeedService service;
 
     @PostMapping
-    @Operation(summary = "Feed 등록")
+    @Operation(summary = "피드 등록")
     public ResultResponse<Integer> insFeed(@RequestBody FeedPostReq p) {
         int result = service.insFeed(p);
         return ResultResponse.<Integer>builder()
@@ -29,7 +30,7 @@ public class FeedController {
     }
 
     @GetMapping("main")
-    @Operation(summary = "Feed 리스트 메인 화면")
+    @Operation(summary = "피드 리스트 메인 화면")
     public ResultResponse<List<FeedGetRes>> selFeedListMain(@ParameterObject FeedGetReq p) {
         List<FeedGetRes> list = service.selFeedListMain(p);
         return ResultResponse.<List<FeedGetRes>>builder()
@@ -39,9 +40,8 @@ public class FeedController {
     }
 
     @GetMapping
-    @Operation(summary = "Feed 리스트")
+    @Operation(summary = "피드 리스트")
     public ResultResponse<List<FeedGetRes>> selFeedList(@ParameterObject FeedGetReq p) {
-        log.info("aaaaaaaaaaaaaaaaa : {}", p);
         List<FeedGetRes> list = service.selFeedList(p);
         return ResultResponse.<List<FeedGetRes>>builder()
                 .resultMessage(String.format("%d rows", list.size()))
@@ -50,7 +50,7 @@ public class FeedController {
     }
 
     @GetMapping("feed/detail")
-    @Operation(summary = "Feed 상세 정보")
+    @Operation(summary = "피드 상세 정보")
     public ResultResponse<FeedDetailGetRes> selFeedDetail(@ParameterObject FeedDetailGetReq p) {
         FeedDetailGetRes res = service.selFeedDetail(p);
         return ResultResponse.<FeedDetailGetRes>builder()
@@ -60,7 +60,7 @@ public class FeedController {
     }
 
     @PutMapping
-    @Operation(summary = "Feed 수정")
+    @Operation(summary = "피드 수정")
     public ResultResponse<Integer> updFeed(@RequestBody FeedPutReq p) {
         int result = service.updFeed(p);
         return ResultResponse.<Integer>builder()
@@ -70,7 +70,7 @@ public class FeedController {
     }
 
     @DeleteMapping
-    @Operation(summary = "Feed 삭제")
+    @Operation(summary = "피드 삭제")
     public ResultResponse<Integer> delFeed(@ParameterObject @ModelAttribute FeedDelReq p) {
         int result = service.delFeed(p);
         return ResultResponse.<Integer>builder()
